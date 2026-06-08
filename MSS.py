@@ -567,4 +567,19 @@ with tab4:
     """, unsafe_allow_html=True)
 
     st.markdown("""
-    <a href="https://oshri.kosha.or.kr/cms/resFileDownload.do?siteId=kosha&type=etc&fileName=%282024%EB%85%84%29%EA%B8%B0%EC%88%A0%EC%A7%80%EC%9B%90%EA%B7%9C%EC%A0%95%EA%B0%9C%ED%8E%B8%EC%97%90%EB%94%B0%EB%A5%B8%EC%97%B0%EA%B3%84%ED%91%9C%28%
+    <a href="https://oshri.kosha.or.kr/cms/resFileDownload.do?siteId=kosha&type=etc&fileName=%282024%EB%85%84%29%EA%B8%B0%EC%88%A0%EC%A7%80%EC%9B%90%EA%B7%9C%EC%A0%95%EA%B0%9C%ED%8E%B8%EC%97%90%EB%94%B0%EB%A5%B8%EC%97%B0%EA%B3%84%ED%91%9C%28%EA%B3%B5%EC%A7%80%EC%9A%A9%29.pdf" target="_blank" style="text-decoration: none;">
+        <div class="link-btn-container" style="background: linear-gradient(135deg, #00B188 0%, #007A5E 100%); padding: 18px; border-radius: 10px; text-align: center; color: white; font-weight: bold; font-size: 18px; margin-bottom: 20px; box-shadow: 0 4px 10px rgba(0, 177, 136, 0.4); transition: transform 0.2s;">
+            📗 2025년 KOSHA 기술지원규정 <br class='mobile-br'>신·구 연계표 다운로드 (PDF)
+        </div>
+    </a>
+    """, unsafe_allow_html=True)
+
+# ==========================================
+# [푸터]
+# ==========================================
+st.markdown("""
+<hr style="border-color: rgba(255,255,255,0.1); margin-top: 40px;">
+<div style="text-align: center; color: #64748b; font-size: 12px;">
+    © 기계안전기술사 AI Assistant. 수험생님의 합격을 진심으로 기원합니다!
+</div>
+""", unsafe_allow_html=True)
