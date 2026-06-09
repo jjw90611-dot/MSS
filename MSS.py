@@ -149,6 +149,59 @@ tab_subnote, tab1, tab2, tab_new, tab3, tab4 = st.tabs([
     "Sheet1 (Data_Raw)", "Sheet2 (Summary)", "Sheet3 (Test_A)", "Sheet4 (Test_B)", "Sheet5 (Log)", "Sheet6 (Ref_Link)"
 ])
 
+def render_notes(raw_text):
+    """
+    기계안전기술사 서브노트의 계층구조(1. -> 가. -> 1) -> 가))를 파악하여
+    자동으로 들여쓰기와 줄바꿈을 완벽하게 맞춰주는 함수
+    """
+    lines = raw_text.split('\n')
+    formatted_lines = []
+    current_indent = "" # 핵심: 현재 들여쓰기 수준을 기억하는 변수
+    
+    for line in lines:
+        line = line.strip() # 앞뒤의 불규칙한 띄어쓰기 제거
+        if not line:
+            formatted_lines.append("") # 빈 줄은 여백으로 유지
+            continue
+            
+        # 0. 대제목: **[ 1. 피로 ]**
+        if line.startswith("**["):
+            current_indent = ""
+            formatted_lines.append(f"\n{line}")
+            
+        # 1. 숫자 항목: 1. 개요 또는 **1. 개요** (들여쓰기 없음, 위아래 여백)
+        elif re.match(r'^(?:\*\*)?\d+\.', line):
+            current_indent = ""
+            # 굵게 처리 안 된 경우 자동으로 굵게 처리
+            if not line.startswith("**"):
+                line = f"**{line}**"
+            formatted_lines.append(f"\n{line}")
+            
+        # 2. 중분류: 가. 나. 다. (들여쓰기 4칸)
+        elif re.match(r'^[가-힣]\.', line):
+            current_indent = "&nbsp;" * 4
+            formatted_lines.append(f"{current_indent}{line}")
+            
+        # 3. 소분류: 1) 2) 3) (들여쓰기 8칸)
+        elif re.match(r'^\d+\)', line):
+            current_indent = "&nbsp;" * 8
+            formatted_lines.append(f"{current_indent}{line}")
+            
+        # 4. 세분류: 가) 나) 다) (들여쓰기 12칸)
+        elif re.match(r'^[가-힣]\)', line):
+            current_indent = "&nbsp;" * 12
+            formatted_lines.append(f"{current_indent}{line}")
+            
+        # 5. 번호가 없는 이어지는 문장 ("이 한계를...", "적용사례:", "인간이 실수를" 등)
+        else:
+            # 부모 항목의 들여쓰기(current_indent)를 그대로 물려받아 라인을 완벽히 맞춤
+            formatted_lines.append(f"{current_indent}{line}")
+            
+    # Streamlit에서 줄바꿈이 절대 무너지지 않도록 각 줄 끝에 마크다운 개행("  \n") 강제 주입
+    result = "  \n".join(formatted_lines)
+    st.markdown(result, unsafe_allow_html=True)
+
+
 # ------------------------------------------
 # [탭 0] 핵심 서브노트 (1~62번)
 # ------------------------------------------
