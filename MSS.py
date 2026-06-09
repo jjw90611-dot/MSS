@@ -149,6 +149,11 @@ tab_subnote, tab1, tab2, tab_new, tab3, tab4 = st.tabs([
     "Sheet1 (Data_Raw)", "Sheet2 (Summary)", "Sheet3 (Test_A)", "Sheet4 (Test_B)", "Sheet5 (Log)", "Sheet6 (Ref_Link)"
 ])
 
+mport streamlit as st
+import re
+
+def render_notes(raw_text):
+
 def render_notes(raw_text):
     """
     기계안전기술사 서브노트의 계층구조(1. -> 가. -> 1) -> 가))를 파악하여
