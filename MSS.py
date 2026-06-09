@@ -3263,7 +3263,7 @@ with tab_subnote:
         2) 두 개 이상의 공구는 가능한 한 하나로 결합하여 사용해야 함
         3) 레버, 핸들 등은 작업자가 자세를 바꾸지 않고도 조작하기 쉬운 위치에 설계해야 함
         """)
-        with st.expander("Row 8: 재해율 및 사고예방 (39~44번)"):
+     with st.expander("Row 8: 재해율 및 사고예방 (39~44번)"):
         st.markdown("""
         **[ 39. 재해율 ]**
         **1. 개요**
@@ -3535,7 +3535,7 @@ with tab_subnote:
         나. 크리이프에 대한 저항성이 뛰어난 재료를 사용하여 크리이프 일어나는 것을 어렵게 해야 함
         """)
 
-        with st.expander("Row 9: 고소작업대 및 펌프 (45~49번)", expanded=True):
+      with st.expander("Row 9: 고소작업대 및 펌프 (45~49번)", expanded=True):
         render_notes("""
         **[ 45. 고소작업대 ]**
         **1. 개요**
