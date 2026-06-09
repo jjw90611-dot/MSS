@@ -4,6 +4,7 @@ import datetime
 import random
 import requests
 import textwrap
+import re  # <-- 정규표현식을 위한 모듈 추가됨
 
 # ==========================================
 # [초기 설정] 페이지 세팅
@@ -130,30 +131,8 @@ if 'ai_new_question' not in st.session_state: st.session_state['ai_new_question'
 if 'ai_new_feedback' not in st.session_state: st.session_state['ai_new_feedback'] = ""
 
 # ==========================================
-# [텍스트 렌더링 헬퍼 함수] - 줄바꿈 완벽 유지
+# [텍스트 렌더링 헬퍼 함수] - 지능형 들여쓰기 및 줄바꿈 완벽 유지
 # ==========================================
-def render_notes(text):
-    # 1. 파이썬 코드상의 들여쓰기 제거
-    dedented_text = textwrap.dedent(text)
-    # 2. 마크다운에서 줄바꿈이 인식되도록 모든 엔터(\n) 앞에 공백 2개 추가
-    formatted_text = dedented_text.replace('\n', '  \n')
-    st.markdown(formatted_text)
-
-# ==========================================
-# [화면 구성] 메인 화면
-# ==========================================
-st.markdown("<div class='excel-title'>Data Analysis & Review System (v2026.1)</div>", unsafe_allow_html=True)
-st.markdown("<div class='status-bar'>Status: Ready | User: Admin | DB Connection: OK | Current Year: 2026</div>", unsafe_allow_html=True)
-
-tab_subnote, tab1, tab2, tab_new, tab3, tab4 = st.tabs([
-    "Sheet1 (Data_Raw)", "Sheet2 (Summary)", "Sheet3 (Test_A)", "Sheet4 (Test_B)", "Sheet5 (Log)", "Sheet6 (Ref_Link)"
-])
-
-mport streamlit as st
-import re
-
-def render_notes(raw_text):
-
 def render_notes(raw_text):
     """
     기계안전기술사 서브노트의 계층구조(1. -> 가. -> 1) -> 가))를 파악하여
@@ -205,6 +184,16 @@ def render_notes(raw_text):
     # Streamlit에서 줄바꿈이 절대 무너지지 않도록 각 줄 끝에 마크다운 개행("  \n") 강제 주입
     result = "  \n".join(formatted_lines)
     st.markdown(result, unsafe_allow_html=True)
+
+# ==========================================
+# [화면 구성] 메인 화면
+# ==========================================
+st.markdown("<div class='excel-title'>Data Analysis & Review System (v2026.1)</div>", unsafe_allow_html=True)
+st.markdown("<div class='status-bar'>Status: Ready | User: Admin | DB Connection: OK | Current Year: 2026</div>", unsafe_allow_html=True)
+
+tab_subnote, tab1, tab2, tab_new, tab3, tab4 = st.tabs([
+    "Sheet1 (Data_Raw)", "Sheet2 (Summary)", "Sheet3 (Test_A)", "Sheet4 (Test_B)", "Sheet5 (Log)", "Sheet6 (Ref_Link)"
+])
 
 
 # ------------------------------------------
