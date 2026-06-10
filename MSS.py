@@ -3535,7 +3535,7 @@ with tab_subnote:
         나. 크리이프에 대한 저항성이 뛰어난 재료를 사용하여 크리이프 일어나는 것을 어렵게 해야 함
         """)
 
-      with st.expander("Row 9: 고소작업대 및 펌프 (45~49번)", expanded=True):
+    with st.expander("Row 9: 고소작업대 및 펌프 (45~49번)"):
         render_notes("""
         **[ 45. 고소작업대 ]**
         **1. 개요**
